@@ -5,12 +5,15 @@ import plotly.graph_objects as go
 import plotly.utils
 import json
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
 def load_data():
     try:
-        df = pd.read_excel('【利润】2025年度公司净利润汇总表2024-12-10.xlsx')
+        # 使用相对路径加载Excel文件
+        excel_path = os.path.join(os.path.dirname(__file__), '【利润】2025年度公司净利润汇总表2024-12-10.xlsx')
+        df = pd.read_excel(excel_path)
         return df
     except Exception as e:
         print(f"Error loading data: {e}")
@@ -148,4 +151,5 @@ def index():
                          metrics=metrics)
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port) 
