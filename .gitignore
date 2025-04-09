@@ -30,10 +30,6 @@ ENV/
 *.swp
 *.swo
 
-# Excel files
-*.xlsx
-*.xls
-
 # Environment variables
 .env
 .env.local 
